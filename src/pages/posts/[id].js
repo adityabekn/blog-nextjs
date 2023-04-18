@@ -1,7 +1,7 @@
-import Layout from "@/pages/components/layout";
+import Layout from "@/components/layout";
 import { getAllPostsId, getPostData } from "../../../lib/posts";
 import Head from "next/head";
-import Date from "@/pages/components/date"
+import FormatDate from "@/components/formatDate"
 import utilStyle from "@/styles/utils.module.css"
 
 export default function Post({ postData }) {
@@ -12,7 +12,7 @@ export default function Post({ postData }) {
         <article>
             <h1 className={utilStyle.headingXl}>{postData.title}</h1>
             <div className={utilStyle.lightText}>
-                <Date dateString={postData.date}></Date>
+                <FormatDate dateString={postData.date}></FormatDate>
             </div>
             <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
         </article>
@@ -21,7 +21,7 @@ export default function Post({ postData }) {
 
 export async function getStaticPaths() {
     const paths = await getAllPostsId()
-    console.log(paths)
+    // console.log(paths)
     return {
         paths,
         fallback: false,
@@ -30,7 +30,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
     const postData = await getPostData(params.id);
-    console.log(postData)
+    // console.log(postData)
     return {
         props: {
             postData,

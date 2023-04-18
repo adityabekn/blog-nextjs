@@ -1,15 +1,14 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import Head from 'next/head'
-import Date from "@/pages/components/date"
+import FormatDate from "@/components/formatDate"
 
-import Layout, {siteTitle} from "@/pages/components/layout";
+import Layout, {siteTitle} from "@/components/layout";
 import utilStyle from "@/styles/utils.module.css"
 import {getSortedPostsData} from "@/../lib/posts";
 
 
 export async function getStaticProps() {
-    const allPostsData = getSortedPostsData()
+    const allPostsData = await getSortedPostsData()
     return {
         props: {
             allPostsData,
@@ -26,7 +25,7 @@ export default function Home({allPostsData}) {
             <section className={utilStyle.headingMd}>
                 <p>[Your Self Introduction]</p>
                 <p>
-                    (This is sample website - you'll be building a site like this on our Next.js tutorial.)
+                    (This is sample website - you`&apos;`ll be building a site like this on our Next.js tutorial.)
                 </p>
             </section>
 
@@ -39,7 +38,7 @@ export default function Home({allPostsData}) {
                                 <Link href={`/posts/${id}`}>{title}</Link>
                                 <br/>
                                 <small>
-                                    <Date dateString={date}></Date>
+                                    <FormatDate dateString={date}/>
                                 </small>
                             </li>
                         ))
