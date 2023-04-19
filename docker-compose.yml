@@ -6,3 +6,8 @@ services:
       target: runner
     ports:
       - "3000:3000"
+
+networks:
+  default:
+    name: "npm"
+    external: true
