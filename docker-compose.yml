@@ -8,6 +8,6 @@ services:
       - "3000:3000"
 
 networks:
-  default:
+  npm:
     name: "npm"
     external: true
